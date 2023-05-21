@@ -1,0 +1,14 @@
+package scd.a3;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+/**
+ *
+ * @author MASTER
+ */
+ 
+public class LoginForm extends JFrame implements ActionListener {
+    private JTextField usernameField;
+    private JPasswordField passwordField;
