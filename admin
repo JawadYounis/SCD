@@ -1,0 +1,69 @@
+
+package scd.a3;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+/**
+ *
+ * @author MASTER
+ */
+
+
+public class adminfunc extends JFrame implements ActionListener {
+    private JButton viewBooksButton;
+    private JButton viewUsersButton;
+    private JButton viewIssuedBooksButton;
+    private JButton issueBookButton;
+    private JButton addUserButton;
+    private JButton addBookButton;
+    private JButton returnBookButton;
+    private JButton createResetButton;
+
+    public adminfunc() {
+        setTitle("Library Management System");
+        setSize(550, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        viewBooksButton = new JButton("View Books");
+        viewBooksButton.addActionListener(this);
+        add(viewBooksButton);
+
+        viewUsersButton = new JButton("View Users");
+        viewUsersButton.addActionListener(this);
+        add(viewUsersButton);
+
+        viewIssuedBooksButton = new JButton("View Issued Books");
+        viewIssuedBooksButton.addActionListener(this);
+        add(viewIssuedBooksButton);
+
+        issueBookButton = new JButton("Issue Book");
+        issueBookButton.addActionListener(this);
+        add(issueBookButton);
+
+        addUserButton = new JButton("Add User");
+        addUserButton.addActionListener(this);
+        add(addUserButton);
+
+        addBookButton = new JButton("Add Book");
+        addBookButton.addActionListener(this);
+        add(addBookButton);
+
+        returnBookButton = new JButton("Return Book");
+        returnBookButton.addActionListener(this);
+        add(returnBookButton);
+
+        createResetButton = new JButton("Create/Reset");
+        createResetButton.addActionListener(this);
+        add(createResetButton);
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == viewBooksButton) {
+            // opens window to view books  on button action
+               new viewBooks().setVisible(true);
+        } else if (e.getSource() == viewUsersButton) {
+            // opens window to  view users on button action
+           
