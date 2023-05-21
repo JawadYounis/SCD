@@ -1,3 +1,9 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 package scd.a3;
 import javax.swing.*;
 import java.awt.*;
@@ -12,3 +18,72 @@ import java.awt.event.ActionListener;
 public class LoginForm extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private UserDao userDao; // initiallizin Data Access Object
+
+    public LoginForm() {
+        setTitle("Login");
+        setSize(350, 300); 
+        setLayout(new FlowLayout());// Set the layout pattern of the form
+
+        JLabel uname = new JLabel("Username:");
+        add(uname);
+
+        usernameField = new JTextField(20);
+        add(usernameField);
+
+        JLabel password = new JLabel("Password:");
+        add(password);
+
+        passwordField = new JPasswordField(20);
+        add(passwordField);
+
+        JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(this);
+        add(loginButton);
+
+        userDao = new UserDao();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String username = usernameField.getText();
+        char[] passwordChars = passwordField.getPassword();
+        String password = new String(passwordChars);
+
+        boolean isAuthenticated = userDao.authenticate(username, password); // using data access object to login thru password 
+
+        if (isAuthenticated) {
+           // if Login successful
+            new adminfunc().setVisible(true);
+        } else {
+            // if log in unsucessful
+            JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+        }
+
+        usernameField.setText("");
+        passwordField.setText("");
+       
+    }
+     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt)
+        {
+            new adminfunc().setVisible(true);  // linking login action button to next screen 
+        } 
+
+    public static void main(String[] args) {
+       
+                new LoginForm();
+            }
+        ;
+       
+}
+
+class UserDao {
+    public boolean authenticate(String username, String password) {
+        if (username.equals("library") && password.equals("admin")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
