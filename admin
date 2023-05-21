@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package scd.a3;
 import javax.swing.*;
@@ -14,16 +19,16 @@ public class adminfunc extends JFrame implements ActionListener {
     private JButton viewUsersButton;
     private JButton viewIssuedBooksButton;
     private JButton issueBookButton;
+    private JButton createResetButton;
     private JButton addUserButton;
     private JButton addBookButton;
     private JButton returnBookButton;
-    private JButton createResetButton;
 
     public adminfunc() {
         setTitle("Library Management System");
         setSize(550, 150);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+    
+        setLayout(new FlowLayout()); // selecting design pattern layout (flow)
 
         viewBooksButton = new JButton("View Books");
         viewBooksButton.addActionListener(this);
@@ -41,6 +46,13 @@ public class adminfunc extends JFrame implements ActionListener {
         issueBookButton.addActionListener(this);
         add(issueBookButton);
 
+
+
+        createResetButton = new JButton("Create/Reset");
+        createResetButton.addActionListener(this);
+        add(createResetButton);
+
+        
         addUserButton = new JButton("Add User");
         addUserButton.addActionListener(this);
         add(addUserButton);
@@ -52,11 +64,7 @@ public class adminfunc extends JFrame implements ActionListener {
         returnBookButton = new JButton("Return Book");
         returnBookButton.addActionListener(this);
         add(returnBookButton);
-
-        createResetButton = new JButton("Create/Reset");
-        createResetButton.addActionListener(this);
-        add(createResetButton);
-
+        
         setVisible(true);
     }
 
@@ -67,3 +75,59 @@ public class adminfunc extends JFrame implements ActionListener {
         } else if (e.getSource() == viewUsersButton) {
             // opens window to  view users on button action
            
+            
+             new viewUser().setVisible(true);
+        } else if (e.getSource() == viewIssuedBooksButton) {
+            // action to view issued books 
+             new viewIssuedBook().setVisible(true);
+            
+        } else if (e.getSource() == issueBookButton) {
+            // window to enter data to  issue book on button action
+            new issueBook().setVisible(true);
+            
+          
+        } else if (e.getSource() == addUserButton) {
+            // Handle add user button action
+            
+                   new addUser().setVisible(true);
+           
+        } else if (e.getSource() == addBookButton) {
+            // opens window to add book on button action
+     
+            new addBook().setVisible(true);
+           
+        } else if (e.getSource() == returnBookButton) {
+            //  return book button action
+            
+            new returnBook().setVisible(true);
+            
+        } else if (e.getSource() == createResetButton) {
+            //  create/reset button action
+            JOptionPane.showMessageDialog(this, " Database Create/Reset");
+        }
+    }
+
+    private void JButtonviewBooksButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        new viewBooks().setVisible(true);
+    }
+    
+    private void JButtonviewUsersButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        new viewUser().setVisible(true);
+    }
+    private void JButtonissueBookButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        new issueBook().setVisible(true);
+    }
+    
+    private void viewIssuedBooksButtonActionPerformed(java.awt.event.ActionEvent evt)
+    {
+        new viewIssuedBook().setVisible(true);
+    }
+    
+    public static void main(String[] args) {
+        new adminfunc();
+    }
+}
+
